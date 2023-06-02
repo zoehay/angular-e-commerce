@@ -24,3 +24,13 @@ button.primary {
   color: white;
   border-radius: 8px;
 }
+
+.page-content {
+  padding: 0.9375rem;
+  margin: auto;
+}
+@media (min-width: 46rem) {
+  .page-content {
+    max-width: 75rem;
+  }
+}

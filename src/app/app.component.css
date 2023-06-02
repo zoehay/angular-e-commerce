@@ -21,6 +21,9 @@ a {
   color: var(--accent-light-2);
 }
 
+a:hover {
+  color: var(--accent-bold-2);
+}
 .content {
   padding: var(--content-padding);
 }
