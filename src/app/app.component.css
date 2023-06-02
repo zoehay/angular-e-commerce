@@ -1,12 +1,26 @@
 :host {
   --content-padding: 10px;
 }
-header {
-  display: block;
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   height: 60px;
   padding: var(--content-padding);
-  box-shadow: 0px 5px 25px var(--shadow-color);
+  background-color: var(--accent-bold-1);
 }
+
+.links {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-light-2);
+}
+
 .content {
   padding: var(--content-padding);
 }
