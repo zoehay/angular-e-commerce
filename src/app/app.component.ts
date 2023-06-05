@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, RouterModule],
+  imports: [HomeComponent, RouterModule, ReactiveFormsModule, FormsModule],
   template: `
     <main>
       <nav>
@@ -24,10 +25,10 @@ import { RouterModule } from '@angular/router';
           </header>
         </a>
         <div class="links">
-          <a [routerLink]="['/']"> User </a>
+          <a [routerLink]="['/auth/login']"> User </a>
         </div>
       </nav>
-      <section class="content">
+      <section class="page-content">
         <router-outlet></router-outlet>
       </section>
     </main>

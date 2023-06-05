@@ -5,10 +5,13 @@ import { Product } from './product';
   providedIn: 'root',
 })
 export class ProductService {
-  url = 'https://e-commerce.zoemhay.com/api/products';
+  url = '//localhost:8000/products';
 
   async getAllProducts(): Promise<Product[]> {
-    const data = await fetch(this.url);
-    return (await data.json()) ?? [];
+    const data = await fetch(this.url, {
+      credentials: 'include',
+    });
+    const response = await data.json();
+    return response.products ?? [];
   }
 }
