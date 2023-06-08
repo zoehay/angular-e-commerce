@@ -1,13 +1,21 @@
 :host {
   --content-padding: 10px;
 }
+
 nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 60px;
-  padding: var(--content-padding);
+  height: 5rem;
   background-color: var(--accent-bold-1);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--content-padding);
+  width: 100%;
 }
 
 .links {
@@ -26,4 +34,18 @@ a:hover {
 }
 .content {
   padding: var(--content-padding);
+}
+
+.page-content {
+  padding: 0.9375rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 46rem) {
+  .page-content,
+  .nav-content {
+    max-width: 75rem;
+  }
 }

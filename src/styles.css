@@ -35,18 +35,6 @@ button.primary {
   border-radius: 8px;
 }
 
-.page-content {
-  padding: 0.9375rem;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-}
-@media (min-width: 46rem) {
-  .page-content {
-    max-width: 75rem;
-  }
-}
-
 form {
   display: flex;
   flex-direction: column;
