@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { User } from './user';
@@ -37,9 +37,10 @@ import { CommonModule } from '@angular/common';
           <div class="links" *ngIf="user; then thenBlock; else elseBlock"></div>
           <ng-template #thenBlock>
             <a [routerLink]="['/user']"> Profile </a>
+            <button (click)="logout()">Logout</button>
           </ng-template>
           <ng-template #elseBlock>
-            <a [routerLink]="['/auth/login']"> User </a>
+            <a [routerLink]="['/auth/login']"> Login </a>
           </ng-template>
         </div>
       </nav>
@@ -52,10 +53,19 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'angular-e-commerce';
-  user?: User = undefined;
+  user!: User | null;
   userService: UserService = inject(UserService);
 
-  constructor() {
-    this.user = this.userService.getUser();
+  constructor(private router: Router) {}
+
+  async ngOnInit() {
+    this.user = await this.userService.getUser();
+  }
+
+  async logout() {
+    console.log('logout');
+    await this.userService.logoutUser();
+    this.user = await this.userService.getUser();
+    this.router.navigate(['auth/login']);
   }
 }

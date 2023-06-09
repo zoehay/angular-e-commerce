@@ -18,27 +18,26 @@ import { UserService } from '../user.service';
       </div>
 
       <div class="profile-field">
-        <div class="field-name">EMAIL</div>
+        <div class="field-name">NAME</div>
         <div class="field-value">
-          {{ user?.email }}
+          {{ user?.name }}
         </div>
       </div>
 
       <div class="profile-field">
-        <div class="field-name">EMAIL</div>
-        <div class="field-value">
-          {{ user?.email }}
-        </div>
+        <div class="field-name">PASSWORD</div>
       </div>
     </div>
   </div>`,
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
-  user?: User = undefined;
+  user?: User | null;
   userService: UserService = inject(UserService);
 
-  constructor() {
-    this.user = this.userService.getUser();
+  constructor() {}
+
+  async ngOnInit() {
+    this.user = await this.userService.getUser();
   }
 }

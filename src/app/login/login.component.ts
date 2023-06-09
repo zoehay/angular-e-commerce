@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { UserService } from '../user.service';
+import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -32,8 +35,10 @@ import {
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  userService: UserService = inject(UserService);
+  user!: User | null;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   // #TODO: add validators
 
@@ -42,9 +47,17 @@ export class LoginComponent implements OnInit {
       email: '',
       password: '',
     });
+    this.user = this.userService.user;
   }
 
-  onSubmit(form: FormGroup) {
+  async onSubmit(form: FormGroup) {
     console.log('Email', form.value.email);
+    await this.userService.loginUser(form.value.email, form.value.password);
+    this.user = await this.userService.getUser();
+    if (this.user) {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['auth/login']);
+    }
   }
 }

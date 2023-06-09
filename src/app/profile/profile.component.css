@@ -5,7 +5,18 @@
   justify-content: left;
 }
 
-.profile-content {
-  display: grid;
-  grid-template-columns: auto auto auto;
+.profile-field {
+  margin-top: 3rem;
+  margin-left: 1rem;
+}
+
+@media (min-width: 46rem) {
+  .profile-content {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  .profile-field {
+    margin: 0rem;
+  }
 }
