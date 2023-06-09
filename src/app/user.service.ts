@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,17 @@ export class UserService {
   user!: User | null;
   url = 'http://localhost:8000';
 
+  private userEvent = new BehaviorSubject<User | null>(null);
+
   constructor() {}
+
+  emitUser(user: User | null) {
+    this.userEvent.next(user);
+  }
+
+  userListener() {
+    return this.userEvent.asObservable();
+  }
 
   async getUser() {
     const response = await fetch(this.url + '/user', {

@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     console.log('Email', form.value.email);
     await this.userService.loginUser(form.value.email, form.value.password);
     this.user = await this.userService.getUser();
+    this.userService.emitUser(this.user);
     if (this.user) {
       this.router.navigate(['']);
     } else {

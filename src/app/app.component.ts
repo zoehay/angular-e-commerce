@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { User } from './user';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -55,11 +56,21 @@ export class AppComponent {
   title = 'angular-e-commerce';
   user!: User | null;
   userService: UserService = inject(UserService);
+  userSubscription!: Subscription;
 
   constructor(private router: Router) {}
 
   async ngOnInit() {
+    this.userSubscription = this.userService
+      .userListener()
+      .subscribe((user) => {
+        this.user = user;
+      });
     this.user = await this.userService.getUser();
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
   async logout() {
