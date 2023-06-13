@@ -18,4 +18,21 @@ export class CartProductService {
     console.log(responseJSON.cart);
     return responseJSON.cart ?? [];
   }
+
+  async incrementCartProductQuantity(userId: number, productId: number) {
+    const body = JSON.stringify({
+      userId: userId,
+      productId: productId,
+    });
+    const response = await fetch(this.url + 'cart', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    });
+    const responseJSON = await response.json();
+    return responseJSON ?? null;
+  }
 }

@@ -17,40 +17,7 @@ import { Subscription } from 'rxjs';
     FormsModule,
     CommonModule,
   ],
-  template: `
-    <main>
-      <nav>
-        <div class="nav-content">
-          <div class="links">
-            <a [routerLink]="['/products']"> Products </a>
-            <a [routerLink]="['/']"> Home </a>
-          </div>
-          <a [routerLink]="['/']">
-            <header class="brand-name">
-              <img
-                class="brand-logo"
-                src="/assets/logo.png"
-                alt="logo"
-                aria-hidden="true"
-              />
-            </header>
-          </a>
-          <div class="links" *ngIf="user; then thenBlock; else elseBlock"></div>
-          <ng-template #thenBlock>
-            <a [routerLink]="['/cart']"> Cart </a>
-            <a [routerLink]="['/user']"> Profile </a>
-            <button (click)="logout()">Logout</button>
-          </ng-template>
-          <ng-template #elseBlock>
-            <a [routerLink]="['/auth/login']"> Login </a>
-          </ng-template>
-        </div>
-      </nav>
-      <section class="page-content">
-        <router-outlet></router-outlet>
-      </section>
-    </main>
-  `,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
