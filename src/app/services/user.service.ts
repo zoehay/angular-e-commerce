@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from '../models/user';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -30,7 +30,6 @@ export class UserService {
   }
 
   async loginUser(email: string, password: string) {
-    // perform login and return user
     const body = JSON.stringify({ email: email, password: password });
     const response = await fetch(this.url + '/auth/login', {
       credentials: 'include',

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../product';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-product',

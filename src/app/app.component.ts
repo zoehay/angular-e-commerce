@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from './user.service';
-import { User } from './user';
+import { UserService } from './services/user.service';
+import { User } from './models/user';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
