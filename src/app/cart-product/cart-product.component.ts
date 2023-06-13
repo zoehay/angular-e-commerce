@@ -10,10 +10,13 @@ import { CartProduct } from '../models/cartproduct';
     <div class="cart-product-tile">
       <div class="product-name">
         {{ cartProduct.product.name }}
-        <div>
-          <div>Price: {{ cartProduct.product.price }}</div>
-          <div>Quantity: {{ cartProduct.quantity }}</div>
+      </div>
+      <div class="product-info">
+        <div class="product-price">Price: {{ cartProduct.product.price }}g</div>
+        <div class="product-description">
+          {{ cartProduct.product.description }}
         </div>
+        <div class="product-quantity">Quantity: {{ cartProduct.quantity }}</div>
       </div>
     </div>
   `,
