@@ -3,6 +3,7 @@ import { HomeComponent } from '../home/home.component';
 import { ProductsComponent } from '../products/products.component';
 import { LoginComponent } from '../login/login.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { CartComponent } from '../cart/cart.component';
 
 const routeConfig: Routes = [
   {
@@ -24,6 +25,11 @@ const routeConfig: Routes = [
     path: 'user',
     component: ProfileComponent,
     title: 'User profile page',
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    title: 'Cart page',
   },
 ];
 

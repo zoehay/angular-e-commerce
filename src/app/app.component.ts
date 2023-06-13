@@ -37,6 +37,7 @@ import { Subscription } from 'rxjs';
           </a>
           <div class="links" *ngIf="user; then thenBlock; else elseBlock"></div>
           <ng-template #thenBlock>
+            <a [routerLink]="['/cart']"> Cart </a>
             <a [routerLink]="['/user']"> Profile </a>
             <button (click)="logout()">Logout</button>
           </ng-template>
