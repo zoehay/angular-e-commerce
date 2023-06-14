@@ -1,37 +1,29 @@
 import { Injectable } from '@angular/core';
 import { CartProduct } from '../models/cartproduct';
 import { Product } from '../models/product';
+import { FetchService } from './fetch.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartProductService {
   cartProducts: CartProduct[] = [];
-  url = '//localhost:8000/';
-  constructor() {}
+
+  constructor(private fetchService: FetchService) {}
 
   async getCart() {
-    const response = await fetch(this.url + 'cart/details', {
-      credentials: 'include',
-    });
-    const responseJSON = await response.json();
-    return responseJSON.cart ?? [];
+    const endpoint = '/cart/details';
+    const response = await this.fetchService.get(endpoint);
+    return response.cart ?? [];
   }
 
   async incrementCartProductQuantity(userId: number, productId: number) {
+    const endpoint = '/cart';
     const body = JSON.stringify({
       userId: userId,
       productId: productId,
     });
-    const response = await fetch(this.url + 'cart', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: body,
-    });
-    const responseJSON = await response.json();
-    return responseJSON ?? null;
+    const response = await this.fetchService.postBody(endpoint, body);
+    return response ?? null;
   }
 }

@@ -24,11 +24,9 @@ export class UserService {
 
   // #TODO: fix multiple get user
   async getUser() {
-    const response = await fetch(this.url + '/user', {
-      credentials: 'include',
-    });
-    const responseJSON = await response.json();
-    return (this.user = responseJSON.user ?? null);
+    const endpoint = '/user';
+    const response = await this.fetchService.get(endpoint);
+    return (this.user = response.user ?? null);
   }
 
   // #TODO: add useful return error messages
