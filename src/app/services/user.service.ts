@@ -54,4 +54,24 @@ export class UserService {
     const responseJSON = await response.json();
     return (this.user = null);
   }
+
+  async registerUser(email: string, name: string, password: string) {
+    const body = JSON.stringify({
+      email: email,
+      userName: name,
+      password: password,
+    });
+    const response = await fetch(this.url + '/auth/register', {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    });
+    const responseJSON = await response.json();
+    if ((responseJSON.user.email = email)) {
+      return await this.loginUser(email, password);
+    }
+  }
 }

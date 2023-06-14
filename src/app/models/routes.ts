@@ -4,6 +4,7 @@ import { ProductsComponent } from '../products/products.component';
 import { LoginComponent } from '../login/login.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { CartComponent } from '../cart/cart.component';
+import { RegisterComponent } from '../register/register.component';
 
 const routeConfig: Routes = [
   {
@@ -30,6 +31,11 @@ const routeConfig: Routes = [
     path: 'cart',
     component: CartComponent,
     title: 'Cart page',
+  },
+  {
+    path: 'auth/register',
+    component: RegisterComponent,
+    title: 'Registration page',
   },
 ];
 

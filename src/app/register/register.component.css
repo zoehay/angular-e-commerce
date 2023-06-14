@@ -15,10 +15,10 @@
   margin: 2rem;
 }
 
-.register-link {
+.login-link {
   color: var(--accent-bold-1);
 }
 
-.register-link:hover {
+.login-link:hover {
   color: var(--accent-bold-2);
 }

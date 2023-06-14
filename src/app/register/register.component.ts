@@ -1,29 +1,34 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
-import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   template: `
     <div class="form-page">
-      <h2>Account Login</h2>
+      <h2>Create New Account</h2>
       <form
-        [formGroup]="loginForm"
-        (ngSubmit)="onSubmit(loginForm)"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit(registerForm)"
         class="app-form"
       >
         <div class="form-field">
           <label for="email">Email</label>
           <input id="email" type="text" formControlName="email" />
+        </div>
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input id="name" type="text" formControlName="name" />
         </div>
         <div class="form-field">
           <label for="password">Password</label>
@@ -33,32 +38,33 @@ import { Router, RouterModule } from '@angular/router';
           <button type="submit">Submit</button>
         </div>
       </form>
-      <a class="register-link" [routerLink]="['/auth/register']">
-        Create an Account</a
-      >
+      <a class="login-link" [routerLink]="['/auth/login']"> User Login</a>
     </div>
   `,
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./register.component.css'],
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class RegisterComponent {
+  registerForm!: FormGroup;
   userService: UserService = inject(UserService);
   user!: User | null;
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
-  // #TODO: add validators
-
   ngOnInit() {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       email: '',
+      name: '',
       password: '',
     });
     this.user = this.userService.user;
   }
 
   async onSubmit(form: FormGroup) {
-    await this.userService.loginUser(form.value.email, form.value.password);
+    const newUser = await this.userService.registerUser(
+      form.value.email,
+      form.value.name,
+      form.value.password
+    );
     this.user = await this.userService.getUser();
     this.userService.emitUser(this.user);
     if (this.user) {
