@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    console.log('Email', form.value.email);
     await this.userService.loginUser(form.value.email, form.value.password);
     this.user = await this.userService.getUser();
     this.userService.emitUser(this.user);

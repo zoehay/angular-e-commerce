@@ -22,6 +22,7 @@ nav {
   width: 10rem;
   display: flex;
   justify-content: space-between;
+  margin: 0 0.5rem;
 }
 
 a {
@@ -48,4 +49,14 @@ a:hover {
   .nav-content {
     max-width: 75rem;
   }
+}
+
+.nav-button {
+  color: var(--accent-light-2);
+  background-color: transparent;
+  border: none;
+}
+
+.nav-button:hover {
+  color: var(--accent-bold-2);
 }

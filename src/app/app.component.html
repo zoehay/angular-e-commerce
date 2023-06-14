@@ -2,8 +2,8 @@
   <nav>
     <div class="nav-content">
       <div class="links">
-        <a [routerLink]="['/products']"> Products </a>
-        <a [routerLink]="['/']"> Home </a>
+        <a [routerLink]="['/']">Home</a>
+        <a [routerLink]="['/products']">Shop</a>
       </div>
       <a [routerLink]="['/']">
         <header class="brand-name">
@@ -15,14 +15,24 @@
           />
         </header>
       </a>
-      <div class="links" *ngIf="user; then thenBlock; else elseBlock"></div>
+      <div *ngIf="user; then thenBlock; else elseBlock"></div>
       <ng-template #thenBlock>
-        <a [routerLink]="['/cart']"> Cart </a>
-        <a [routerLink]="['/user']"> Profile </a>
-        <button (click)="logout()">Logout</button>
+        <div class="links">
+          <a [routerLink]="['/cart']">
+            <fa-icon [icon]="faCartShopping"></fa-icon
+          ></a>
+          <a [routerLink]="['/user']"><fa-icon [icon]="faUser"></fa-icon></a>
+          <button class="nav-button" (click)="logout()">
+            <fa-icon [icon]="faRightFromBracket"></fa-icon>
+          </button>
+        </div>
       </ng-template>
       <ng-template #elseBlock>
-        <a [routerLink]="['/auth/login']"> Login </a>
+        <div class="links" style="display: flex; justify-content: right">
+          <a [routerLink]="['/auth/login']"
+            ><fa-icon [icon]="faUser"></fa-icon
+          ></a>
+        </div>
       </ng-template>
     </div>
   </nav>

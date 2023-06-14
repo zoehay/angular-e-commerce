@@ -15,7 +15,6 @@ export class CartProductService {
       credentials: 'include',
     });
     const responseJSON = await response.json();
-    console.log(responseJSON.cart);
     return responseJSON.cart ?? [];
   }
 

@@ -6,6 +6,12 @@ import { UserService } from './services/user.service';
 import { User } from './models/user';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  faCartShopping,
+  faRightFromBracket,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +22,7 @@ import { Subscription } from 'rxjs';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    FontAwesomeModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -25,6 +32,10 @@ export class AppComponent {
   user!: User | null;
   userService: UserService = inject(UserService);
   userSubscription!: Subscription;
+
+  faCartShopping = faCartShopping;
+  faRightFromBracket = faRightFromBracket;
+  faUser = faUser;
 
   constructor(private router: Router) {}
 
