@@ -7,7 +7,6 @@ import {
 import { CommonModule } from '@angular/common';
 import { Product } from '../models/product';
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
 import { Router, RouterModule } from '@angular/router';
 import { CartProductService } from '../services/cartproduct.service';
 
@@ -33,15 +32,12 @@ import { CartProductService } from '../services/cartproduct.service';
 })
 export class ProductComponent {
   @Input() product!: Product;
-  user?: User | null;
-  userService: UserService = inject(UserService);
-  cartProductService: CartProductService = inject(CartProductService);
+  @Input() user?: User | null;
 
-  constructor(private router: Router) {}
-
-  async ngOnInit() {
-    this.user = await this.userService.getUser();
-  }
+  constructor(
+    private router: Router,
+    private cartProductService: CartProductService
+  ) {}
 
   async addToCart() {
     const addedProduct =
