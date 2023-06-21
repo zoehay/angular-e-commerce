@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CartProduct } from '../models/cartproduct';
 import { CartProductService } from '../services/cartproduct.service';
 import { User } from '../models/user';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart-product',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   template: `
     <div class="cart-product-tile">
       <div class="product-name">
@@ -37,7 +36,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class CartProductComponent {
   @Input() cartProduct!: CartProduct;
-  @Input() handleUpdateQuantity: any;
   @Input() user!: User;
   @Output() updateEvent = new EventEmitter<{
     productId: number;

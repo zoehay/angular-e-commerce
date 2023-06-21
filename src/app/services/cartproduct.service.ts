@@ -18,6 +18,12 @@ export class CartProductService {
     return response.cart ?? [];
   }
 
+  async clearCart() {
+    const endpoint = '/cart';
+    const response = await this.fetchService.delete(endpoint);
+    return response.count;
+  }
+
   async incrementCartProductQuantity(userId: number, productId: number) {
     const endpoint = '/cart';
     const body = JSON.stringify({

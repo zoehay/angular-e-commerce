@@ -51,4 +51,20 @@ export class FetchService {
       console.log(error);
     }
   }
+
+  async delete(endpoint: string) {
+    try {
+      const response = await fetch(this.url + endpoint, {
+        credentials: 'include',
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const responseJSON = await response.json();
+      return responseJSON;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

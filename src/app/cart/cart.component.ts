@@ -11,20 +11,31 @@ import { User } from '../models/user';
   standalone: true,
   imports: [CommonModule, CartProductComponent],
   template: ` <div class="page-content">
-    <section class="product-feed">
+    <div
+      class="cart-content"
+      *ngIf="cartProductCount !== 0; then thenBlock; else elseBlock"
+    ></div>
+
+    <ng-template #thenBlock>
       <app-cart-product
         *ngFor="let cartProduct of cartProductList"
         [cartProduct]="cartProduct"
         (updateEvent)="handleUpdateQuantity($event)"
         [user]="user"
       ></app-cart-product>
-    </section>
+      <button (click)="handleClearCart()">Clear Cart</button>
+    </ng-template>
+
+    <ng-template #elseBlock>
+      <h2>Your cart is empty</h2>
+    </ng-template>
   </div>`,
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
   cartProductList: CartProduct[] = [];
   user!: User;
+  cartProductCount: number = 0;
 
   // #TODO: do more research on passing user state
   // Choosing to put user service in Cart component to be consistent with how Products page works
@@ -40,7 +51,7 @@ export class CartComponent {
   async getCartProducts() {
     const newCartProducts = await this.cartProductService.getCart();
     this.cartProductList = newCartProducts;
-    console.log(this.cartProductList);
+    this.cartProductCount = this.cartProductList.length;
   }
 
   async getUser() {
@@ -61,5 +72,14 @@ export class CartComponent {
       }
     });
     this.cartProductList = newCartProducts;
+    this.cartProductCount = this.cartProductList.length;
+  }
+
+  async handleClearCart() {
+    const deletedCount = await this.cartProductService.clearCart();
+    if (Number(deletedCount) === this.cartProductCount) {
+      this.cartProductList = [];
+      this.cartProductCount = 0;
+    }
   }
 }
