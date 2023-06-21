@@ -26,7 +26,7 @@ import { FormsModule } from '@angular/forms';
           id="quantity-input"
           name="quantity"
           type="number"
-          min="1"
+          min="0"
           value="{{ cartProduct.quantity }}"
           (change)="updateQuantity($event)"
         />
@@ -62,6 +62,6 @@ export class CartProductComponent {
         newQuantity
       );
       await this.updateEvent.emit(data);
-    }, 350);
+    }, 400);
   }
 }
