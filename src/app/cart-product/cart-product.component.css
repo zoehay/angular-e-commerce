@@ -3,23 +3,39 @@
   padding: 1rem;
   margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.product-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .product-info {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.product-description .product-quantity {
+.product-description,
+.product-quantity {
   display: none;
 }
 
 .product-price {
   font-size: 0.75rem;
-  margin: 0.25rem;
   display: flex;
   align-items: center;
+  margin: 0.25rem;
+}
+
+.product-set-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 8rem;
+  min-width: 1rem;
 }
 
 @media (min-width: 46rem) {
@@ -31,5 +47,8 @@
     font-size: 1rem;
     margin: 0.25rem;
     display: block;
+  }
+  .product-set-quantity {
+    max-width: 100%;
   }
 }
