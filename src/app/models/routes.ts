@@ -10,32 +10,32 @@ const routeConfig: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home page',
+    title: 'Home',
   },
   {
     path: 'products',
     component: ProductsComponent,
-    title: 'Products page',
+    title: 'Shop',
   },
   {
     path: 'auth/login',
     component: LoginComponent,
-    title: 'Login page',
+    title: 'Login',
   },
   {
     path: 'user',
     component: ProfileComponent,
-    title: 'User profile page',
+    title: 'Profile',
   },
   {
     path: 'cart',
     component: CartComponent,
-    title: 'Cart page',
+    title: 'Cart',
   },
   {
     path: 'auth/register',
     component: RegisterComponent,
-    title: 'Registration page',
+    title: 'Register',
   },
 ];
 
