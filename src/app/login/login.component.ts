@@ -30,7 +30,7 @@ import { Router, RouterModule } from '@angular/router';
           <input id="password" type="password" formControlName="password" />
         </div>
         <div class="form-field">
-          <button type="submit">Submit</button>
+          <button type="submit" id="submit">Submit</button>
         </div>
       </form>
       <a class="register-link" [routerLink]="['/auth/register']">
